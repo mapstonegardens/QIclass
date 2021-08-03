@@ -3,4 +3,7 @@ matplotlib
 numpy
 pandas
 scipy
+bruges
+tqdm
+segyio
 #seaborn
