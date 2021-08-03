@@ -6,4 +6,4 @@ Semua file dalam repo ini ditujukan untuk memberikan latihan-latihan selama kela
 <br> tetap kreatif ! -adi w
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mapstonegardens/QIclass/HEAD)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/mapstonegardens/QIclass/00_intro.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mapstonegardens/QIclass)
