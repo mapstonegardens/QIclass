@@ -1,0 +1,27 @@
+f=plt.subplots(figsize=(14, 8), facecolor="white", dpi=80)
+ax1 = plt.subplot2grid((1,4), (0,0), colspan=1)
+ax2 = plt.subplot2grid((1,4), (0,1), colspan=1)
+ax3 = plt.subplot2grid((4,2), (0,1), rowspan=2)
+ax4 = plt.subplot2grid((4,2), (2,1), rowspan=2)
+for aa in [ax1, ax2, ax3, ax4]:
+    aa.xaxis.set_label_position('top')
+    aa.grid(color='gray', linestyle=':', linewidth=0.6)
+for bb in [ax1, ax2]:
+    bb.set_xlim(2,4.6)
+    bb.invert_yaxis()
+for cc in [ax3, ax4]:
+    cc.set_xlim(2,4.6)
+ax1.plot(vp0, z, color='C0')
+ax1.plot(vpmv,z, color='C1')
+ax1.set_xlabel("Moving Avg", size=16)
+ax2.plot(vp0, z, color='C0')
+ax2.plot(vpmvfft,z, color='C1')
+ax2.set_xlabel("Moving Avg FFT", size=16)
+ax2.yaxis.set_ticklabels([])
+ax3.plot(vp0, rho0, 'C0o')
+ax3.plot(vpmv,rho0, 'C1o', fillstyle='none', lw=1)
+ax3.set_xlabel("Moving Avg", size=16)
+ax3.xaxis.set_ticklabels([])
+ax4.plot(vp0, rho0, 'C0o')
+ax4.plot(vpmvfft, rho0, 'C1o',fillstyle='none', lw=1)
+ax4.set_xlabel("Moving Avg FFT", size=16);

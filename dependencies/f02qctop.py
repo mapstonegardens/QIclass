@@ -1,0 +1,61 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+def well_sect(datawell,top_plot,base_plot,marker,markerdepth):
+    logs=datawell[(datawell.index >= top_plot) & (datawell.index <= base_plot)]
+    f, ax = plt.subplots(nrows=1, ncols=3, figsize=(10,8), sharey=True)
+    f.suptitle("Well Log Section", fontsize=20)
+    f.subplots_adjust(top=0.8,wspace=0.1)
+    for axes in ax:
+        axes.set_ylim(top_plot, base_plot)
+        axes.invert_yaxis()
+        axes.yaxis.grid(True)
+        axes.xaxis.grid(True)
+        axes.xaxis.set_ticks_position('bottom')
+        axes.xaxis.set_label_position('top')
+        axes.grid(True,linestyle=':')
+        for (i,j) in zip(markerdepth,marker):
+            if ((i>=top_plot) and (i<=base_plot)):
+                axes.axhline(y=i, linewidth=0.5, color='r')
+                ax[0].text(0.1, i ,j, color='r', size=14)
+    #kolom: Vsh, Density
+    ax01=ax[0].twiny()
+    ax01.set_xlim(0,1.0)
+    ax01.spines['top'].set_position(('outward',40))
+    ax01.set_xlabel("Vsh", color='k', size=14)
+    ax01.plot(logs.Vsh, logs.index, label='Vsh', color='k')
+    ax01.tick_params(axis='x', colors='k')
+    ax02=ax[0].twiny()
+    ax02.set_xlim(1,3)
+    ax02.plot(logs.Rho, logs.index, label='Rho', color='grey') 
+    ax02.spines['top'].set_position(('outward',5))
+    ax02.set_xlabel('Rho',color='grey', size=14)    
+    ax02.tick_params(axis='x', colors='grey')
+    #kolom: velocities
+    ax11=ax[1].twiny()
+    ax11.set_xlim(2.5,4.5)
+    ax11.spines['top'].set_position(('outward',40))
+    ax11.set_xlabel("Vp", color='k', size=14)
+    ax11.plot(logs.Vp, logs.index, label='Vp', color='k')
+    ax11.tick_params(axis='x', colors='k')
+    ax12=ax[1].twiny()
+    ax12.set_xlim(0,4.5)
+    ax12.plot(logs.Vs, logs.index, label='Vs', color='grey') 
+    ax12.spines['top'].set_position(('outward',5))
+    ax12.set_xlabel('Vs',color='grey', size=14)    
+    ax12.tick_params(axis='x', colors='grey')
+    #kolom: Porosity Saturation
+    ax21=ax[2].twiny()
+    ax21.set_xlim(0.2,1)
+    ax21.spines['top'].set_position(('outward',5))
+    ax21.set_xlabel("Sat", color='k', size=14)
+    ax21.plot(logs.Swt, logs.index, label='Sat', color='grey')
+    ax21.tick_params(axis='x', colors='grey')
+    ax21.fill_betweenx(logs.index,logs.Swt,logs.Swt.max(), facecolor='g', alpha=0.2)
+    ax22=ax[2].twiny()
+    ax22.set_xlim(0,0.5)
+    ax22.plot(logs.Phit, logs.index, label='Phit', color='k') 
+    ax22.spines['top'].set_position(('outward',40))
+    ax22.set_xlabel('Phit',color='k', size=14)    
+    ax22.tick_params(axis='x', colors='k')
+    f.tight_layout() 

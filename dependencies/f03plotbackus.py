@@ -1,0 +1,36 @@
+f=plt.subplots(figsize=(14, 8), facecolor="white", dpi=80)
+ax1 = plt.subplot2grid((1,6), (0,0), colspan=1)
+ax2 = plt.subplot2grid((1,6), (0,1), colspan=1)
+ax3 = plt.subplot2grid((1,6), (0,2), colspan=1)
+ax4 = plt.subplot2grid((4,2), (0,1), rowspan=2)
+ax5 = plt.subplot2grid((4,2), (2,1), rowspan=2)
+for aa in [ax1, ax2, ax3, ax4, ax5]:
+    aa.xaxis.set_label_position('top')
+    aa.grid(color='gray', linestyle=':', linewidth=0.6)
+for bb in [ax4, ax5]:
+    bb.set_xlim(2,4.6)
+    bb.set_ylim(1.2,2.8)
+for cc in [ax1, ax2, ax3]:
+    cc.invert_yaxis()
+vp1=0.9*vp0.min();vp2=1.1*vp0.max()
+vs1=0.9*vs0.min();vs2=1.1*vs0.max()
+rho1=0.95*rho0.min();rho2=1.05*rho0.max()
+ax1.plot(vp0, z, color='C0')
+ax1.plot(vpba,z, color='C1')
+ax1.set_xlabel("vp", size=16)
+ax1.set_xlim(vp1, vp2)
+ax2.plot(vs0, z, color='C0')
+ax2.plot(vsba, z, color='C1')
+ax2.set_xlabel("vs", size=16)
+ax2.set_xlim(vs1, vs2); 
+ax2.yaxis.set_ticklabels([])
+ax3.plot(rho0, z, color='C0')
+ax3.plot(rhoba, z, color='C1')
+ax3.set_xlabel("rho", size=16)
+ax3.set_xlim(rho1, rho2); 
+ax3.yaxis.set_ticklabels([])
+ax4.plot(vp0,rho0,'C0o')
+ax4.set_xlabel("Raw", size=16)
+ax4.xaxis.set_ticklabels([])
+ax5.plot(vpba,rhoba,'C1o')
+ax5.set_xlabel("Backus", size=16);
